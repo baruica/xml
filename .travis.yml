@@ -8,6 +8,9 @@ php:
 before_install:
     - composer self-update
 
+before_script:
+    - php composer.phar install --dev --no-interaction --prefer-dist
+
 script:
     - bin/phpspec run
 
