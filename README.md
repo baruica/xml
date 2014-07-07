@@ -1,4 +1,4 @@
-# ETS DocumentStorage library
+# baruica/xml
 
 [![Latest Stable Version](https://poser.pugx.org/baruica/xml/v/stable.svg)](https://packagist.org/packages/baruica/xml)
 [![Total Downloads](https://poser.pugx.org/baruica/xml/downloads.svg)](https://packagist.org/packages/baruica/xml)
