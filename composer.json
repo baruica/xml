@@ -1,6 +1,6 @@
 {
     "name": "baruica/xml",
-    "description": "Simple library providing easy API for reading XML",
+    "description": "Simple library providing an easy API for reading XML.",
     "keywords": ["xml"],
     "homepage": "https://github.com/baruica/xml",
     "license": "Apache-2.0",
@@ -17,6 +17,7 @@
         "bin-dir": "bin"
     },
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": ">=5.3.3"
     },
