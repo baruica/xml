@@ -82,7 +82,7 @@ class XML
         return null;
     }
 
-    public function getNodeAttribute($att, \DOMNode $node = null)
+    public function getNodeAttribute($att, \DOMElement $node = null)
     {
         if (null !== $node) {
             return $node->getAttribute($att);
@@ -91,7 +91,7 @@ class XML
         return null;
     }
 
-    public function getNeighborNodeValue($neighborNodeName, \DOMNode $node = null)
+    public function getNeighborNodeValue($neighborNodeName, \DOMElement $node = null)
     {
         if (null !== $node) {
             return $this->getNodeValue(
@@ -107,7 +107,7 @@ class XML
         return $this->getNodeValue($this->getFirstNode($xpath, $contextNode));
     }
 
-    public function getValues(\DOMNodeList $contextNodes, $keyNodeName, array $valNodes = null, \Closure $fn = null, array $fnParams = null)
+    public function getValues(\DOMNodeList $contextNodes, $keyNodeName, array $valNodes = array(), \Closure $fn = null, array $fnParams = array())
     {
         $values = array();
 
@@ -141,7 +141,11 @@ class XML
     {
         $list = array();
 
-        foreach ($this->getNodeList($xpath) as $node) {
+        if (null === $nodeList = $this->getNodeList($xpath)) {
+            return $list;
+        }
+
+        foreach ($nodeList as $node) {
             $list[] = $this->getNodeValue($node);
         }
 
@@ -152,7 +156,11 @@ class XML
     {
         $list = array();
 
-        foreach ($this->getNodeList($xpath) as $key => $node) {
+        if (null === $nodeList = $this->getNodeList($xpath)) {
+            return $list;
+        }
+
+        foreach ($nodeList as $key => $node) {
             foreach ($node->childNodes as $subNode) {
                 $list[$key][$subNode->nodeName] = $this->getNodeValue($subNode);
             }
