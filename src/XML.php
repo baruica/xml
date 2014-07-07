@@ -21,15 +21,37 @@ class XML
         try {
             $doc = new \DOMDocument();
 
-            if (true === file_exists($filePath)) {
-                $doc->load($filePath);
-            } else {
-                $doc->loadXML($filePath);
+            if (false === file_exists($filePath) || false === $doc->load($filePath)) {
+                throw new \Exception(sprintf('Could not load xml file [%s].', $filePath));
             }
 
             $xml->domXpath = new \DOMXPath($doc);
         } catch (\Exception $e) {
             throw new \Exception(sprintf('Could not load xml file [%s].', $filePath));
+        }
+
+        return $xml;
+    }
+
+    /**
+     * @param string $xmlStr
+     *
+     * @throws \Exception If xml from $xmlStr could not be loaded
+     */
+    public function fromString($xmlStr)
+    {
+        $xml = new XML();
+
+        try {
+            $doc = new \DOMDocument();
+
+            if (false === $doc->loadXML($xmlStr)) {
+                throw new \Exception(sprintf('Could not load XML from string [%s]', $xmlStr));
+            }
+
+            $xml->domXpath = new \DOMXPath($doc);
+        } catch (\Exception $e) {
+            throw new \Exception(sprintf('Could not load XML from string [%s]', $xmlStr));
         }
 
         return $xml;
