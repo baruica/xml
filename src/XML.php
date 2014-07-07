@@ -91,7 +91,7 @@ class XML
         return null;
     }
 
-    public function getNeighborNodeValue($neighborNodeName, \DOMElement $node = null)
+    public function getNeighborNodeValue($neighborNodeName, \DOMNode $node = null)
     {
         if (null !== $node) {
             return $this->getNodeValue(
