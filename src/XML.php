@@ -36,6 +36,12 @@ class XML
     }
 
 
+    /**
+     * @param  string   $xpath
+     * @param  \DOMNode $contextNode
+     *
+     * @return \DOMNodeList
+     */
     public function getNodeList($xpath, \DOMNode $contextNode = null)
     {
         $valNL = (null === $contextNode)
@@ -43,12 +49,18 @@ class XML
                : $this->domXpath->query($xpath, $contextNode);
 
         if (false === $valNL) {
-            return null;
+            return new \DOMNodeList();
         }
 
         return $valNL;
     }
 
+    /**
+     * @param  string   $xpath
+     * @param  \DOMNode $contextNode
+     *
+     * @return \DOMNode|null
+     */
     public function getFirstNode($xpath, \DOMNode $contextNode = null)
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
@@ -60,6 +72,12 @@ class XML
         return $nodeList->item(0);
     }
 
+    /**
+     * @param  string   $xpath
+     * @param  \DOMNode $contextNode
+     *
+     * @return \DOMNode|null
+     */
     public function getLastNode($xpath, \DOMNode $contextNode = null)
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
@@ -73,6 +91,11 @@ class XML
         return $nodeList->item($lastIndex);
     }
 
+    /**
+     * @param  \DOMNode $node
+     *
+     * @return string|null
+     */
     public function getNodeValue(\DOMNode $node = null)
     {
         if (null !== $node) {
@@ -82,6 +105,12 @@ class XML
         return null;
     }
 
+    /**
+     * @param  string      $att
+     * @param  \DOMElement $node
+     *
+     * @return string
+     */
     public function getNodeAttribute($att, \DOMElement $node = null)
     {
         if (null !== $node) {
@@ -91,6 +120,12 @@ class XML
         return null;
     }
 
+    /**
+     * @param  string   $neighborNodeName
+     * @param  \DOMNode $node
+     *
+     * @return string|null
+     */
     public function getNeighborNodeValue($neighborNodeName, \DOMNode $node = null)
     {
         if (null !== $node) {
@@ -102,11 +137,26 @@ class XML
         return null;
     }
 
+    /**
+     * @param  string   $xpath
+     * @param  \DOMNode $contextNode
+     *
+     * @return string
+     */
     public function getValue($xpath, \DOMNode $contextNode = null)
     {
         return $this->getNodeValue($this->getFirstNode($xpath, $contextNode));
     }
 
+    /**
+     * @param  \DOMNodeList $contextNodes
+     * @param  string       $keyNodeName
+     * @param  array        $valNodes
+     * @param  \Closure     $fn
+     * @param  array        $fnParams
+     *
+     * @return array
+     */
     public function getValues(\DOMNodeList $contextNodes, $keyNodeName, array $valNodes = array(), \Closure $fn = null, array $fnParams = array())
     {
         $values = array();
@@ -132,11 +182,22 @@ class XML
         return $values;
     }
 
+    /**
+     * @param  string   $xpath
+     * @param  \DOMNode $contextNode
+     *
+     * @return string
+     */
     public function getLastValue($xpath, \DOMNode $contextNode = null)
     {
         return $this->getNodeValue($this->getLastNode($xpath, $contextNode));
     }
 
+    /**
+     * @param  string $xpath
+     *
+     * @return array
+     */
     public function getList($xpath)
     {
         $list = array();
@@ -152,6 +213,11 @@ class XML
         return $list;
     }
 
+    /**
+     * @param  string $xpath
+     *
+     * @return array
+     */
     public function getListWithName($xpath)
     {
         $list = array();
