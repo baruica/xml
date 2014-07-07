@@ -38,7 +38,7 @@ class XML
      *
      * @throws \Exception If xml from $xmlStr could not be loaded
      */
-    public function fromString($xmlStr)
+    public static function fromString($xmlStr)
     {
         $xml = new XML();
 
