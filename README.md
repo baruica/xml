@@ -7,7 +7,7 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/cbf55965-5555-4e54-a63c-abced4782474/mini.png)](https://insight.sensiolabs.com/projects/cbf55965-5555-4e54-a63c-abced4782474)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/baruica/xml/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/baruica/xml/?branch=master)
 
-Small library that eases XML reading.
+Simple library providing easy API for reading XML.
 
 Installation
 ============
