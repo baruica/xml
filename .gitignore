@@ -1,6 +1,8 @@
-phpunit.xml
-vendor
+bin
 
-# Composer
 composer.lock
 composer.phar
+
+phpunit.xml
+
+vendor
