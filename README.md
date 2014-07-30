@@ -7,6 +7,7 @@
 [![Total Downloads](https://poser.pugx.org/baruica/xml/downloads.svg)](https://packagist.org/packages/baruica/xml)
 [![Latest Stable Version](https://poser.pugx.org/baruica/xml/v/stable.svg)](https://packagist.org/packages/baruica/xml)
 [![Latest Unstable Version](https://poser.pugx.org/baruica/xml/v/unstable.svg)](https://packagist.org/packages/baruica/xml)
+[![Dependency Status](https://www.versioneye.com/php/baruica:xml/dev-master/badge.svg)](https://www.versioneye.com/php/baruica:xml/dev-master)
 
 Simple library providing an easy API for reading XML.
 
