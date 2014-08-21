@@ -1,4 +1,4 @@
 formatter.name: pretty
 suites:
-    todo_suite:
+    main_suite:
         namespace: Baruica
