@@ -4,6 +4,7 @@ namespace Baruica;
 
 class XML
 {
+    /** @var \DOMXPath */
     private $domXpath;
 
     private function __construct()
@@ -12,6 +13,7 @@ class XML
     /**
      * @param string $filePath
      *
+     * @return \Baruica\XML
      * @throws \Exception If xml from $filePath could not be loaded
      */
     public static function fromFile($filePath)
@@ -36,6 +38,7 @@ class XML
     /**
      * @param string $xmlStr
      *
+     * @return \Baruica\XML
      * @throws \Exception If xml from $xmlStr could not be loaded
      */
     public static function fromString($xmlStr)
@@ -56,7 +59,6 @@ class XML
 
         return $xml;
     }
-
 
     /**
      * @param  string   $xpath
