@@ -1,4 +1,4 @@
 formatter.name: pretty
 suites:
     main_suite:
-        namespace: Baruica
+        namespace: Baruica\\Xml

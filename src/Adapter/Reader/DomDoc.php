@@ -1,24 +1,27 @@
 <?php
 
-namespace Baruica;
+namespace Baruica\Xml\Adapter\Reader;
 
-class XML
+use Baruica\Xml\Reader;
+
+class DomDoc implements Reader
 {
     /** @var \DOMXPath */
     private $domXpath;
 
     private function __construct()
-    {}
+    {
+    }
 
     /**
      * @param string $filePath
      *
-     * @return \Baruica\XML
+     * @return \Baruica\Xml\Reader
      * @throws \Exception If xml from $filePath could not be loaded
      */
     public static function fromFile($filePath)
     {
-        $xml = new XML();
+        $xml = new DomDoc();
 
         try {
             $doc = new \DOMDocument();
@@ -38,12 +41,12 @@ class XML
     /**
      * @param string $xmlStr
      *
-     * @return \Baruica\XML
+     * @return \Baruica\Xml\Reader
      * @throws \Exception If xml from $xmlStr could not be loaded
      */
     public static function fromString($xmlStr)
     {
-        $xml = new XML();
+        $xml = new DomDoc();
 
         try {
             $doc = new \DOMDocument();
@@ -69,8 +72,8 @@ class XML
     public function getNodeList($xpath, \DOMNode $contextNode = null)
     {
         $valNL = (null === $contextNode)
-               ? $this->domXpath->query($xpath)
-               : $this->domXpath->query($xpath, $contextNode);
+            ? $this->domXpath->query($xpath)
+            : $this->domXpath->query($xpath, $contextNode);
 
         if (false === $valNL) {
             return new \DOMNodeList();
