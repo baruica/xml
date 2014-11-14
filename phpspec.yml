@@ -1,4 +1,4 @@
 formatter.name: pretty
 suites:
-    main_suite:
-        namespace: Baruica\\Xml
+    xml_reader_adapters_suite:
+        namespace: Baruica\Xml\Adapter\Reader
