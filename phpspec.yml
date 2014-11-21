@@ -2,3 +2,4 @@ formatter.name: pretty
 suites:
     xml_reader_adapters_suite:
         namespace: Baruica\Xml\Adapter\Reader
+        psr4_prefix: Baruica\Xml

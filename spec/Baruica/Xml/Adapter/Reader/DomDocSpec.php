@@ -4,6 +4,9 @@ namespace spec\Baruica\Xml\Adapter\Reader;
 
 use PhpSpec\ObjectBehavior;
 
+/**
+ * @mixin \Baruica\Xml\Adapter\Reader\DomDoc
+ */
 class DomDocSpec extends ObjectBehavior
 {
     function it_is_initializable_from_a_file_path()
