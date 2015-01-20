@@ -5,12 +5,16 @@ php:
   - 5.5
   - 5.6
 
+env:
+  matrix:
+    - PREFER_LOWEST="--prefer-lowest"
+    - PREFER_LOWEST=""
+
 before_install:
     - composer self-update
-    - composer install -n
 
 install:
-    - composer update --no-interaction --prefer-dist --prefer-lowest
+    - composer update --prefer-source $PREFER_LOWEST
 
 script:
     - ./vendor/bin/phpspec run
