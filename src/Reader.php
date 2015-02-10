@@ -11,5 +11,5 @@ interface Reader
      *
      * @return array
      */
-    function getList($xpath);
+    public function getList($xpath);
 }
