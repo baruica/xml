@@ -221,9 +221,7 @@ class DomDoc implements Reader
     }
 
     /**
-     * @param  string $xpath
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function getList($xpath)
     {
