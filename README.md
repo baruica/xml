@@ -1,15 +1,14 @@
 # baruica/xml
 
+Simple library providing an easy API for reading XML.
+
 [![Build Status](https://img.shields.io/travis/baruica/xml.svg?style=flat-square)](https://travis-ci.org/baruica/xml)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/baruica/xml.svg?style=flat-square)](https://scrutinizer-ci.com/g/baruica/xml/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/cbf55965-5555-4e54-a63c-abced4782474/mini.png)](https://insight.sensiolabs.com/projects/cbf55965-5555-4e54-a63c-abced4782474)
 
+[![Latest Version](https://img.shields.io/github/release/baruica/xml.svg?style=flat-square)](https://packagist.org/packages/baruica/xml)
 [![Total Downloads](https://poser.pugx.org/baruica/xml/downloads.svg)](https://packagist.org/packages/baruica/xml)
-[![Latest Stable Version](https://poser.pugx.org/baruica/xml/v/stable.svg)](https://packagist.org/packages/baruica/xml)
-[![Latest Unstable Version](https://poser.pugx.org/baruica/xml/v/unstable.svg)](https://packagist.org/packages/baruica/xml)
 [![Dependency Status](https://www.versioneye.com/php/baruica:xml/dev-master/badge.svg)](https://www.versioneye.com/php/baruica:xml/dev-master)
-
-Simple library providing an easy API for reading XML.
 
 ## Installation
 
