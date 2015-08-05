@@ -2,7 +2,7 @@
 
 Simple library providing an easy API for reading XML.
 
-[![Build Status](https://img.shields.io/travis/baruica/xml.svg?style=flat-square)](https://travis-ci.org/baruica/xml)
+[![Build Status](https://travis-ci.org/baruica/xml.svg?branch=master)](https://travis-ci.org/baruica/xml)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/baruica/xml.svg?style=flat-square)](https://scrutinizer-ci.com/g/baruica/xml/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/cbf55965-5555-4e54-a63c-abced4782474/mini.png)](https://insight.sensiolabs.com/projects/cbf55965-5555-4e54-a63c-abced4782474)
 
