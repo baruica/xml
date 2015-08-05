@@ -3,10 +3,9 @@
 Simple library providing an easy API for reading XML.
 
 [![Build Status](https://travis-ci.org/baruica/xml.svg?branch=master)](https://travis-ci.org/baruica/xml)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/baruica/xml.svg?style=flat-square)](https://scrutinizer-ci.com/g/baruica/xml/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/baruica/xml/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/baruica/xml/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/cbf55965-5555-4e54-a63c-abced4782474/mini.png)](https://insight.sensiolabs.com/projects/cbf55965-5555-4e54-a63c-abced4782474)
 
-[![Latest Version](https://img.shields.io/github/release/baruica/xml.svg?style=flat-square)](https://packagist.org/packages/baruica/xml)
 [![Total Downloads](https://poser.pugx.org/baruica/xml/downloads.svg)](https://packagist.org/packages/baruica/xml)
 [![Dependency Status](https://www.versioneye.com/php/baruica:xml/dev-master/badge.svg)](https://www.versioneye.com/php/baruica:xml/dev-master)
 
