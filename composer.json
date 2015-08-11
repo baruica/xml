@@ -8,11 +8,18 @@
     "authors": [
         {
             "name": "Nelson da Costa",
-            "email": "ndacosta@eleven-labs.com"
+            "email": "barui.ca@gmail.com"
         }
     ],
     "autoload": {
-        "psr-4": { "Baruica\\Xml\\": "src/" }
+        "psr-4": {
+            "Baruica\\Xml\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\Baruica\\Xml\\": "spec/"
+        }
     },
     "require": {
         "php": ">=5.3.3"
