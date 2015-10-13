@@ -1,10 +1,10 @@
 {
     "name": "baruica/xml",
-    "type": "library",
     "description": "Simple library providing an easy API for reading XML.",
+    "type": "library",
     "keywords": ["xml"],
     "homepage": "https://github.com/baruica/xml",
-    "license": "Apache-2.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "Nelson da Costa",
@@ -25,6 +25,6 @@
         "php": ">=5.3.3"
     },
     "require-dev": {
-        "phpspec/phpspec": "~2.1"
+        "phpspec/phpspec": "^2.3"
     }
 }

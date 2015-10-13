@@ -18,4 +18,4 @@ install:
     - composer update --prefer-dist $PREFER_LOWEST
 
 script:
-    - ./vendor/bin/phpspec run
+    - ./bin/test.sh
