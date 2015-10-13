@@ -2,4 +2,4 @@
 
 #composer --quiet --no-interaction update --optimize-autoloader > /dev/null
 
-[ -x vendor/bin/phpspec ] && vendor/bin/phpspec --no-interaction run -f dot && [ -x vendor/bin/phpunit ] && vendor/bin/phpunit
+[ -x vendor/bin/phpspec ] && vendor/bin/phpspec --no-interaction run -f dot
