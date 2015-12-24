@@ -12,9 +12,8 @@
         }
     ],
     "autoload": {
-        "psr-4": {
-            "Baruica\\Xml\\": "src/"
-        }
+        "psr-4": { "Baruica\\Xml\\": "src/" },
+        "exclude-from-classmap": ["/spec/"]
     },
     "autoload-dev": {
         "psr-4": {
