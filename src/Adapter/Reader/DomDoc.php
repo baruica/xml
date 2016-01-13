@@ -17,7 +17,7 @@ class DomDoc implements Reader
      * @param string $filePath
      *
      * @return \Baruica\Xml\Reader
-     * @throws \Exception If xml from $filePath could not be loaded
+     * @throws \RuntimeException If xml from $filePath could not be loaded
      */
     public static function fromFile($filePath)
     {
@@ -27,12 +27,12 @@ class DomDoc implements Reader
             $doc = new \DOMDocument();
 
             if (false === file_exists($filePath) || false === $doc->load($filePath)) {
-                throw new \Exception(sprintf('Could not load xml file [%s].', $filePath));
+                throw new \RuntimeException(sprintf('Could not load xml file [%s].', $filePath));
             }
 
             $xml->domXpath = new \DOMXPath($doc);
         } catch (\Exception $e) {
-            throw new \Exception(sprintf('Could not load xml file [%s].', $filePath));
+            throw new \RuntimeException(sprintf('Could not load xml file [%s].', $filePath));
         }
 
         return $xml;
@@ -42,7 +42,7 @@ class DomDoc implements Reader
      * @param string $xmlStr
      *
      * @return \Baruica\Xml\Reader
-     * @throws \Exception If xml from $xmlStr could not be loaded
+     * @throws \RuntimeException If xml from $xmlStr could not be loaded
      */
     public static function fromString($xmlStr)
     {
@@ -52,12 +52,12 @@ class DomDoc implements Reader
             $doc = new \DOMDocument();
 
             if (false === $doc->loadXML($xmlStr)) {
-                throw new \Exception(sprintf('Could not load XML from string [%s]', $xmlStr));
+                throw new \RuntimeException(sprintf('Could not load XML from string [%s]', $xmlStr));
             }
 
             $xml->domXpath = new \DOMXPath($doc);
         } catch (\Exception $e) {
-            throw new \Exception(sprintf('Could not load XML from string [%s]', $xmlStr));
+            throw new \RuntimeException(sprintf('Could not load XML from string [%s]', $xmlStr));
         }
 
         return $xml;
