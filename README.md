@@ -11,7 +11,7 @@ Simple library providing an easy API for reading XML.
 ## Installation
 
 ```bash
-php composer.phar require baruica/xml
+composer require baruica/xml
 ```
 See the tags to know which version to use when it asks for a version.
 
