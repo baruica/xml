@@ -19,7 +19,7 @@ class DomDoc implements Reader
      * @return \Baruica\Xml\Reader
      * @throws \RuntimeException If xml from $filePath could not be loaded
      */
-    public static function fromFile($filePath)
+    public static function fromFile(string $filePath) : Reader
     {
         $xml = new DomDoc();
 
@@ -44,7 +44,7 @@ class DomDoc implements Reader
      * @return \Baruica\Xml\Reader
      * @throws \RuntimeException If xml from $xmlStr could not be loaded
      */
-    public static function fromString($xmlStr)
+    public static function fromString(string $xmlStr) : Reader
     {
         $xml = new DomDoc();
 
@@ -63,13 +63,7 @@ class DomDoc implements Reader
         return $xml;
     }
 
-    /**
-     * @param  string   $xpath
-     * @param  \DOMNode $contextNode
-     *
-     * @return \DOMNodeList
-     */
-    public function getNodeList($xpath, \DOMNode $contextNode = null)
+    public function getNodeList(string $xpath, \DOMNode $contextNode = null) : \DOMNodeList
     {
         $valNL = (null === $contextNode)
             ? $this->domXpath->query($xpath)
@@ -88,7 +82,7 @@ class DomDoc implements Reader
      *
      * @return \DOMNode|null
      */
-    public function getFirstNode($xpath, \DOMNode $contextNode = null)
+    public function getFirstNode(string $xpath, \DOMNode $contextNode = null) : \DOMNode
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
@@ -105,7 +99,7 @@ class DomDoc implements Reader
      *
      * @return \DOMNode|null
      */
-    public function getLastNode($xpath, \DOMNode $contextNode = null)
+    public function getLastNode(string $xpath, \DOMNode $contextNode = null) : \DOMNode
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
@@ -123,7 +117,7 @@ class DomDoc implements Reader
      *
      * @return string|null
      */
-    public function getNodeValue(\DOMNode $node = null)
+    public function getNodeValue(\DOMNode $node = null) : string
     {
         if (null !== $node) {
             return $node->nodeValue;
@@ -136,9 +130,9 @@ class DomDoc implements Reader
      * @param  string      $att
      * @param  \DOMElement $node
      *
-     * @return string
+     * @return string|null
      */
-    public function getNodeAttribute($att, \DOMElement $node = null)
+    public function getNodeAttribute(string $att, \DOMElement $node = null) : string
     {
         if (null !== $node) {
             return $node->getAttribute($att);
@@ -153,7 +147,7 @@ class DomDoc implements Reader
      *
      * @return string|null
      */
-    public function getNeighborNodeValue($neighborNodeName, \DOMNode $node = null)
+    public function getNeighborNodeValue(string $neighborNodeName, \DOMNode $node = null) : string
     {
         if (null !== $node) {
             return $this->getNodeValue(
@@ -164,13 +158,7 @@ class DomDoc implements Reader
         return null;
     }
 
-    /**
-     * @param  string   $xpath
-     * @param  \DOMNode $contextNode
-     *
-     * @return string
-     */
-    public function getValue($xpath, \DOMNode $contextNode = null)
+    public function getValue(string $xpath, \DOMNode $contextNode = null) : string
     {
         return $this->getNodeValue($this->getFirstNode($xpath, $contextNode));
     }
@@ -184,7 +172,7 @@ class DomDoc implements Reader
      *
      * @return array
      */
-    public function getValues(\DOMNodeList $contextNodes, $keyNodeName, array $valNodes = array(), \Closure $fn = null, array $fnParams = array())
+    public function getValues(\DOMNodeList $contextNodes, string $keyNodeName, array $valNodes = array(), \Closure $fn = null, array $fnParams = array()) : array
     {
         $values = array();
 
@@ -209,21 +197,12 @@ class DomDoc implements Reader
         return $values;
     }
 
-    /**
-     * @param  string   $xpath
-     * @param  \DOMNode $contextNode
-     *
-     * @return string
-     */
-    public function getLastValue($xpath, \DOMNode $contextNode = null)
+    public function getLastValue(string $xpath, \DOMNode $contextNode = null) : string
     {
         return $this->getNodeValue($this->getLastNode($xpath, $contextNode));
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getList($xpath)
+    public function getList(string $xpath) : array
     {
         $list = array();
 
@@ -238,12 +217,7 @@ class DomDoc implements Reader
         return $list;
     }
 
-    /**
-     * @param  string $xpath
-     *
-     * @return array
-     */
-    public function getListWithName($xpath)
+    public function getListWithName(string $xpath) : array
     {
         $list = array();
 

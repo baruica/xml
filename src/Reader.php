@@ -4,10 +4,5 @@ namespace Baruica\Xml;
 
 interface Reader
 {
-    /**
-     * @param  string $xpath
-     *
-     * @return array
-     */
-    public function getList($xpath);
+    public function getList(string $xpath) : array;
 }
