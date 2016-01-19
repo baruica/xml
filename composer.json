@@ -20,8 +20,11 @@
             "spec\\Baruica\\Xml\\": "spec/"
         }
     },
+    "minimum-stability": "beta",
     "require": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "puli/repository": "^1.0",
+        "puli/composer-plugin": "^1.0@beta"
     },
     "require-dev": {
         "phpspec/phpspec": "^2.4"

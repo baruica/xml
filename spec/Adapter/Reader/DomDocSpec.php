@@ -5,13 +5,20 @@ namespace spec\Baruica\Xml\Adapter\Reader;
 use PhpSpec\ObjectBehavior;
 
 use Baruica\Xml\Reader;
+use Puli\Repository\Api\ResourceRepository;
 
 class DomDocSpec extends ObjectBehavior
 {
     public function it_is_initializable_from_a_file_path()
     {
+        $factoryClass = PULI_FACTORY_CLASS;
+        $factory = new $factoryClass();
+
+        /** @var ResourceRepository $repo */
+        $repo = $factory->createRepository();
+
         $this->beConstructedThrough('fromFile', array(
-            __DIR__.'/../Resources/static_factory_constructor.xml'
+            $repo->get('/baruica/xml/xml/static_factory_constructor.xml')->getFilesystemPath()
         ));
 
         $this->shouldHaveType(Reader::class);
