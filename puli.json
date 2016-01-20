@@ -10,8 +10,7 @@
     "packages": {
         "doctrine/instantiator": {
             "install-path": "vendor/doctrine/instantiator",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "justinrainbow/json-schema": {
             "install-path": "vendor/justinrainbow/json-schema",
@@ -19,23 +18,19 @@
         },
         "phpdocumentor/reflection-docblock": {
             "install-path": "vendor/phpdocumentor/reflection-docblock",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "phpspec/php-diff": {
             "install-path": "vendor/phpspec/php-diff",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "phpspec/phpspec": {
             "install-path": "vendor/phpspec/phpspec",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "phpspec/prophecy": {
             "install-path": "vendor/phpspec/prophecy",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "psr/log": {
             "install-path": "vendor/psr/log",
@@ -63,23 +58,19 @@
         },
         "sebastian/comparator": {
             "install-path": "vendor/sebastian/comparator",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "sebastian/diff": {
             "install-path": "vendor/sebastian/diff",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "sebastian/exporter": {
             "install-path": "vendor/sebastian/exporter",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "sebastian/recursion-context": {
             "install-path": "vendor/sebastian/recursion-context",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "seld/jsonlint": {
             "install-path": "vendor/seld/jsonlint",
@@ -87,23 +78,19 @@
         },
         "symfony/console": {
             "install-path": "vendor/symfony/console",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "symfony/event-dispatcher": {
             "install-path": "vendor/symfony/event-dispatcher",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "symfony/finder": {
             "install-path": "vendor/symfony/finder",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "symfony/polyfill-mbstring": {
             "install-path": "vendor/symfony/polyfill-mbstring",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "symfony/process": {
             "install-path": "vendor/symfony/process",
@@ -111,8 +98,7 @@
         },
         "symfony/yaml": {
             "install-path": "vendor/symfony/yaml",
-            "installer": "composer",
-            "env": "dev"
+            "installer": "composer"
         },
         "webmozart/assert": {
             "install-path": "vendor/webmozart/assert",
