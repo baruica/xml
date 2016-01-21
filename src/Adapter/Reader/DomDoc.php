@@ -21,7 +21,7 @@ class DomDoc implements Reader
      */
     public static function fromFile(string $filePath) : Reader
     {
-        $xml = new DomDoc();
+        $reader = new DomDoc();
 
         try {
             $doc = new \DOMDocument();
@@ -30,12 +30,12 @@ class DomDoc implements Reader
                 throw new \RuntimeException(sprintf('Could not load xml file [%s].', $filePath));
             }
 
-            $xml->domXpath = new \DOMXPath($doc);
+            $reader->domXpath = new \DOMXPath($doc);
         } catch (\Exception $e) {
             throw new \RuntimeException(sprintf('Could not load xml file [%s].', $filePath));
         }
 
-        return $xml;
+        return $reader;
     }
 
     /**
@@ -46,7 +46,7 @@ class DomDoc implements Reader
      */
     public static function fromString(string $xmlStr) : Reader
     {
-        $xml = new DomDoc();
+        $reader = new DomDoc();
 
         try {
             $doc = new \DOMDocument();
@@ -55,12 +55,12 @@ class DomDoc implements Reader
                 throw new \RuntimeException(sprintf('Could not load XML from string [%s]', $xmlStr));
             }
 
-            $xml->domXpath = new \DOMXPath($doc);
+            $reader->domXpath = new \DOMXPath($doc);
         } catch (\Exception $e) {
             throw new \RuntimeException(sprintf('Could not load XML from string [%s]', $xmlStr));
         }
 
-        return $xml;
+        return $reader;
     }
 
     public function getNodeList(string $xpath, \DOMNode $contextNode = null) : \DOMNodeList
@@ -77,8 +77,8 @@ class DomDoc implements Reader
     }
 
     /**
-     * @param  string   $xpath
-     * @param  \DOMNode $contextNode
+     * @param string   $xpath
+     * @param \DOMNode $contextNode
      *
      * @return \DOMNode|null
      */
@@ -86,7 +86,7 @@ class DomDoc implements Reader
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
-        if ($nodeList->length == 0) {
+        if (0 === $nodeList->length) {
             return null;
         }
 
@@ -94,8 +94,8 @@ class DomDoc implements Reader
     }
 
     /**
-     * @param  string   $xpath
-     * @param  \DOMNode $contextNode
+     * @param string   $xpath
+     * @param \DOMNode $contextNode
      *
      * @return \DOMNode|null
      */
@@ -103,7 +103,7 @@ class DomDoc implements Reader
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
-        if ($nodeList->length == 0) {
+        if (0 === $nodeList->length) {
             return null;
         }
 
@@ -113,7 +113,7 @@ class DomDoc implements Reader
     }
 
     /**
-     * @param  \DOMNode $node
+     * @param \DOMNode $node
      *
      * @return string|null
      */
@@ -127,8 +127,8 @@ class DomDoc implements Reader
     }
 
     /**
-     * @param  string      $att
-     * @param  \DOMElement $node
+     * @param string      $att
+     * @param \DOMElement $node
      *
      * @return string|null
      */
@@ -142,8 +142,8 @@ class DomDoc implements Reader
     }
 
     /**
-     * @param  string   $neighborNodeName
-     * @param  \DOMNode $node
+     * @param string   $neighborNodeName
+     * @param \DOMNode $node
      *
      * @return string|null
      */
@@ -164,11 +164,11 @@ class DomDoc implements Reader
     }
 
     /**
-     * @param  \DOMNodeList $contextNodes
-     * @param  string       $keyNodeName
-     * @param  array        $valNodes
-     * @param  \Closure     $fn
-     * @param  array        $fnParams
+     * @param \DOMNodeList $contextNodes
+     * @param string       $keyNodeName
+     * @param array        $valNodes
+     * @param \Closure     $fn
+     * @param array        $fnParams
      *
      * @return array
      */
@@ -217,20 +217,20 @@ class DomDoc implements Reader
         return $list;
     }
 
-    public function getListWithName(string $xpath) : array
+    public function getNamedList(string $xpath) : array
     {
-        $list = array();
+        $namedList = array();
 
         if (null === $nodeList = $this->getNodeList($xpath)) {
-            return $list;
+            return $namedList;
         }
 
         foreach ($nodeList as $key => $node) {
             foreach ($node->childNodes as $subNode) {
-                $list[$key][$subNode->nodeName] = $this->getNodeValue($subNode);
+                $namedList[$key][$subNode->nodeName] = $this->getNodeValue($subNode);
             }
         }
 
-        return $list;
+        return $namedList;
     }
 }
