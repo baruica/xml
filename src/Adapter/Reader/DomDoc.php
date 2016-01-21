@@ -71,23 +71,6 @@ class DomDoc implements Reader
         return $list;
     }
 
-    public function getNamedList(string $xpath) : array
-    {
-        $namedList = array();
-
-        if (null === $nodeList = $this->getNodeList($xpath)) {
-            return $namedList;
-        }
-
-        foreach ($nodeList as $key => $node) {
-            foreach ($node->childNodes as $subNode) {
-                $namedList[$key][$subNode->nodeName] = $this->getNodeValue($subNode);
-            }
-        }
-
-        return $namedList;
-    }
-
     public function getNodeList(string $xpath, \DOMNode $contextNode = null) : \DOMNodeList
     {
         $valNL = (null === $contextNode)
@@ -105,9 +88,9 @@ class DomDoc implements Reader
      * @param string   $xpath
      * @param \DOMNode $contextNode
      *
-     * @return \DOMNode|null
+     * @return \DOMElement|null
      */
-    public function getFirstNode(string $xpath, \DOMNode $contextNode = null) : \DOMNode
+    public function getFirstNode(string $xpath, \DOMNode $contextNode = null) : \DOMElement
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
@@ -122,9 +105,9 @@ class DomDoc implements Reader
      * @param string   $xpath
      * @param \DOMNode $contextNode
      *
-     * @return \DOMNode|null
+     * @return \DOMElement|null
      */
-    public function getLastNode(string $xpath, \DOMNode $contextNode = null) : \DOMNode
+    public function getLastNode(string $xpath, \DOMNode $contextNode = null) : \DOMElement
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
@@ -138,11 +121,11 @@ class DomDoc implements Reader
     }
 
     /**
-     * @param \DOMNode $node
+     * @param \DOMElement $node
      *
      * @return string|null
      */
-    public function getNodeValue(\DOMNode $node = null) : string
+    public function getNodeValue(\DOMElement $node = null) : string
     {
         if (null !== $node) {
             return $node->nodeValue;
@@ -167,12 +150,12 @@ class DomDoc implements Reader
     }
 
     /**
-     * @param string   $neighborNodeName
-     * @param \DOMNode $node
+     * @param string      $neighborNodeName
+     * @param \DOMElement $node
      *
      * @return string|null
      */
-    public function getNeighborNodeValue(string $neighborNodeName, \DOMNode $node = null) : string
+    public function getNeighborNodeValue(string $neighborNodeName, \DOMElement $node = null) : string
     {
         if (null !== $node) {
             return $this->getNodeValue(

@@ -8,6 +8,11 @@ use Baruica\Xml\Reader;
 
 class DomDocSpec extends ObjectBehavior
 {
+    public function let()
+    {
+        $this->beConstructedFromFile(__DIR__.'/../../../res/xml/list.xml');
+    }
+
     public function it_is_not_initializable_through_constructor()
     {
         $this->shouldThrow('\Exception')->during('__construct');
@@ -46,5 +51,15 @@ class DomDocSpec extends ObjectBehavior
         $this->beConstructedFromString('<?xml version="1.0" ?><test_root><test_node_1>node 1</test_node_1></test_root></xml>');
 
         $this->shouldHaveType(Reader::class);
+    }
+
+    public function it_returns_a_list_of_node_values()
+    {
+        $this->getList('/test_root/test_nodes/*')->shouldReturn(array(
+            'node 1',
+            'node 2',
+            'node 3',
+            'node 4',
+        ));
     }
 }

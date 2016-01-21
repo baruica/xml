@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<test_root>
+    <test_nodes>
+        <test_node_1>node 1</test_node_1>
+        <test_node_2>node 2</test_node_2>
+        <test_node id="3">node 3</test_node>
+        <test_node id="4">node 4</test_node>
+    </test_nodes>
+    <some_node_5>some node 5</some_node_5>
+</test_root>
