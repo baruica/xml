@@ -9,8 +9,9 @@ class DomDoc implements Reader
     /** @var \DOMXPath */
     private $domXpath;
 
-    private function __construct()
+    private function __construct(\DOMDocument $doc)
     {
+        $this->domXpath = new \DOMXPath($doc);
     }
 
     /**
@@ -21,21 +22,17 @@ class DomDoc implements Reader
      */
     public static function fromFile(string $filePath) : Reader
     {
-        $reader = new DomDoc();
+        $doc = new \DOMDocument();
 
         try {
-            $doc = new \DOMDocument();
-
             if (false === file_exists($filePath) || false === $doc->load($filePath)) {
                 throw new \RuntimeException(sprintf('Could not load xml file [%s].', $filePath));
             }
-
-            $reader->domXpath = new \DOMXPath($doc);
         } catch (\Exception $e) {
-            throw new \RuntimeException(sprintf('Could not load xml file [%s].', $filePath));
+            throw new \RuntimeException($e->getMessage());
         }
 
-        return $reader;
+        return new DomDoc($doc);
     }
 
     /**
@@ -46,21 +43,17 @@ class DomDoc implements Reader
      */
     public static function fromString(string $xmlStr) : Reader
     {
-        $reader = new DomDoc();
+        $doc = new \DOMDocument();
 
         try {
-            $doc = new \DOMDocument();
-
             if (false === $doc->loadXML($xmlStr)) {
                 throw new \RuntimeException(sprintf('Could not load XML from string [%s]', $xmlStr));
             }
-
-            $reader->domXpath = new \DOMXPath($doc);
         } catch (\Exception $e) {
-            throw new \RuntimeException(sprintf('Could not load XML from string [%s]', $xmlStr));
+            throw new \RuntimeException($e->getMessage());
         }
 
-        return $reader;
+        return new DomDoc($doc);
     }
 
     public function getNodeList(string $xpath, \DOMNode $contextNode = null) : \DOMNodeList
