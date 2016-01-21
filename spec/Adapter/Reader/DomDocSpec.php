@@ -8,26 +8,43 @@ use Baruica\Xml\Reader;
 
 class DomDocSpec extends ObjectBehavior
 {
-    public function it_is_initializable_from_a_file_path()
+    public function it_is_not_initializable_through_constructor()
     {
-        $this->beConstructedThrough('fromFile', array(
-            __DIR__.'/../../../res/xml/static_factory_constructor.xml'
-        ));
+        $this->shouldThrow('\Exception')->during('__construct');
+    }
+
+    public function it_throws_an_exception_if_the_xml_file_does_not_exist(\DOMDocument $doc)
+    {
+        $this->beConstructedFromFile('toto.xml');
+
+        $this->shouldThrow('\RuntimeException')->duringInstantiation();
+    }
+
+    public function it_throws_an_exception_if_DOMDocument_cannot_load_the_content_of_the_xml_file(\DOMDocument $doc)
+    {
+        $this->beConstructedFromFile(__DIR__.'/../../../res/xml/unloadable.xml');
+
+        $this->shouldThrow('\RuntimeException')->duringInstantiation();
+    }
+
+    public function it_is_initializable_from_the_path_of_a_xml_file()
+    {
+        $this->beConstructedFromFile(__DIR__.'/../../../res/xml/static_factory_constructor.xml');
 
         $this->shouldHaveType(Reader::class);
+    }
+
+    public function it_throws_an_exception_if_DOMDocument_cannot_load_the_xml_string()
+    {
+        $this->beConstructedFromString('unloadable content');
+
+        $this->shouldThrow('\RuntimeException')->duringInstantiation();
     }
 
     public function it_is_initializable_from_a_string()
     {
-        $this->beConstructedThrough('fromString', array(
-            '<?xml version="1.0" ?><test_root><test_node_1>node 1</test_node_1></test_root></xml>'
-        ));
+        $this->beConstructedFromString('<?xml version="1.0" ?><test_root><test_node_1>node 1</test_node_1></test_root></xml>');
 
         $this->shouldHaveType(Reader::class);
-    }
-
-    public function it_is_not_initializable_through_constructor()
-    {
-        $this->shouldThrow('\Exception')->during('__construct');
     }
 }

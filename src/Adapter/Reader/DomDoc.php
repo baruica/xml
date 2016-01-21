@@ -56,6 +56,38 @@ class DomDoc implements Reader
         return new DomDoc($doc);
     }
 
+    public function getList(string $xpath) : array
+    {
+        $list = array();
+
+        if (null === $nodeList = $this->getNodeList($xpath)) {
+            return $list;
+        }
+
+        foreach ($nodeList as $node) {
+            $list[] = $this->getNodeValue($node);
+        }
+
+        return $list;
+    }
+
+    public function getNamedList(string $xpath) : array
+    {
+        $namedList = array();
+
+        if (null === $nodeList = $this->getNodeList($xpath)) {
+            return $namedList;
+        }
+
+        foreach ($nodeList as $key => $node) {
+            foreach ($node->childNodes as $subNode) {
+                $namedList[$key][$subNode->nodeName] = $this->getNodeValue($subNode);
+            }
+        }
+
+        return $namedList;
+    }
+
     public function getNodeList(string $xpath, \DOMNode $contextNode = null) : \DOMNodeList
     {
         $valNL = (null === $contextNode)
@@ -193,37 +225,5 @@ class DomDoc implements Reader
     public function getLastValue(string $xpath, \DOMNode $contextNode = null) : string
     {
         return $this->getNodeValue($this->getLastNode($xpath, $contextNode));
-    }
-
-    public function getList(string $xpath) : array
-    {
-        $list = array();
-
-        if (null === $nodeList = $this->getNodeList($xpath)) {
-            return $list;
-        }
-
-        foreach ($nodeList as $node) {
-            $list[] = $this->getNodeValue($node);
-        }
-
-        return $list;
-    }
-
-    public function getNamedList(string $xpath) : array
-    {
-        $namedList = array();
-
-        if (null === $nodeList = $this->getNodeList($xpath)) {
-            return $namedList;
-        }
-
-        foreach ($nodeList as $key => $node) {
-            foreach ($node->childNodes as $subNode) {
-                $namedList[$key][$subNode->nodeName] = $this->getNodeValue($subNode);
-            }
-        }
-
-        return $namedList;
     }
 }
