@@ -4,8 +4,12 @@ namespace spec\Baruica\Xml\Adapter\Reader;
 
 use PhpSpec\ObjectBehavior;
 
+use Baruica\Xml\Adapter\Reader\DomDoc;
 use Baruica\Xml\Reader;
 
+/**
+ * @mixin DomDoc
+ */
 class DomDocSpec extends ObjectBehavior
 {
     public function let()
