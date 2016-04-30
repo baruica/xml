@@ -22,14 +22,14 @@ class DomDocSpec extends ObjectBehavior
         $this->shouldThrow('\Exception')->during('__construct');
     }
 
-    public function it_throws_an_exception_if_the_xml_file_does_not_exist(\DOMDocument $doc)
+    public function it_throws_an_exception_if_the_xml_file_does_not_exist()
     {
         $this->beConstructedFromFile('toto.xml');
 
         $this->shouldThrow('\RuntimeException')->duringInstantiation();
     }
 
-    public function it_throws_an_exception_if_DOMDocument_cannot_load_the_content_of_the_xml_file(\DOMDocument $doc)
+    public function it_throws_an_exception_if_DOMDocument_cannot_load_the_content_of_the_xml_file()
     {
         $this->beConstructedFromFile(__DIR__.'/../../../res/xml/unloadable.xml');
 
