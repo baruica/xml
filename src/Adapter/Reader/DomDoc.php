@@ -136,7 +136,7 @@ class DomDoc implements Reader
 
         foreach ($contextNodes as $node) {
             $keyNodeValue = $this->getValue($keyNodeName, $node);
-            if (!isset($values[$keyNodeValue])) {
+            if (!array_key_exists($keyNodeValue, $values)) {
                 $values[$keyNodeValue] = [];
             }
             foreach ($valNodes as $valNodeName) {
