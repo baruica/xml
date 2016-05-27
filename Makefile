@@ -9,4 +9,4 @@ help:
 VENDOR_BIN := vendor/bin
 
 tests: ## run phpspec if available in vendor/bin
-	[ -x $(VENDOR_BIN)/phpspec ] && $(VENDOR_BIN)/phpspec --no-interaction run -f dot
+	@[ -x $(VENDOR_BIN)/phpspec ] && $(VENDOR_BIN)/phpspec --no-interaction run -f dot
