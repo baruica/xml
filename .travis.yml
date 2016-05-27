@@ -14,4 +14,4 @@ install:
     - composer update $COMPOSER_FLAGS --prefer-dist --no-interaction
 
 script:
-    - ./bin/test.sh
+    - make tests
