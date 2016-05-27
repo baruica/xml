@@ -7,11 +7,10 @@ matrix:
     - php: 7.0
       env: COMPOSER_FLAGS='--prefer-lowest --prefer-stable'
 
-before_install:
-    - composer self-update
+before_install: composer self-update
 
-install:
-    - composer update $COMPOSER_FLAGS --prefer-dist --no-interaction
+install: composer update $COMPOSER_FLAGS --prefer-dist --no-interaction
 
-script:
-    - make tests
+before_script: phpenv config-rm xdebug.ini
+
+script: make tests
