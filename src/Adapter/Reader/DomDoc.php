@@ -101,8 +101,6 @@ class DomDoc implements Reader
         if (null !== $node) {
             return $node->nodeValue;
         }
-
-        return;
     }
 
     public function getNodeAttribute(string $att, \DOMElement $node = null) : string
@@ -110,8 +108,6 @@ class DomDoc implements Reader
         if (null !== $node) {
             return $node->getAttribute($att);
         }
-
-        return;
     }
 
     public function getNeighborNodeValue(string $neighborNodeName, \DOMElement $node = null) : string
@@ -121,8 +117,6 @@ class DomDoc implements Reader
                 $node->parentNode->getElementsByTagName($neighborNodeName)->item(0)
             );
         }
-
-        return;
     }
 
     public function getValue(string $xpath, \DOMNode $contextNode = null) : string
