@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Baruica\Xml\Adapter\Reader;
+namespace tests\Baruica\Xml\Adapter\Reader;
 
 use PhpSpec\ObjectBehavior;
 
