@@ -26,7 +26,7 @@ class DomDoc implements Reader
             throw new \RuntimeException($e->getMessage());
         }
 
-        return new DomDoc($doc);
+        return new self($doc);
     }
 
     public static function fromString(string $xmlStr) : Reader
@@ -41,7 +41,7 @@ class DomDoc implements Reader
             throw new \RuntimeException($e->getMessage());
         }
 
-        return new DomDoc($doc);
+        return new self($doc);
     }
 
     public function getList(string $xpath) : array
@@ -77,7 +77,7 @@ class DomDoc implements Reader
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
         if (0 === $nodeList->length) {
-            return null;
+            return;
         }
 
         return $nodeList->item(0);
@@ -88,7 +88,7 @@ class DomDoc implements Reader
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
         if (0 === $nodeList->length) {
-            return null;
+            return;
         }
 
         $lastIndex = $nodeList->length - 1;
@@ -102,7 +102,7 @@ class DomDoc implements Reader
             return $node->nodeValue;
         }
 
-        return null;
+        return;
     }
 
     public function getNodeAttribute(string $att, \DOMElement $node = null) : string
@@ -111,7 +111,7 @@ class DomDoc implements Reader
             return $node->getAttribute($att);
         }
 
-        return null;
+        return;
     }
 
     public function getNeighborNodeValue(string $neighborNodeName, \DOMElement $node = null) : string
@@ -122,7 +122,7 @@ class DomDoc implements Reader
             );
         }
 
-        return null;
+        return;
     }
 
     public function getValue(string $xpath, \DOMNode $contextNode = null) : string

@@ -3,7 +3,6 @@
 namespace tests\Baruica\Xml\Adapter\Reader;
 
 use PhpSpec\ObjectBehavior;
-
 use Baruica\Xml\Reader;
 
 /**
