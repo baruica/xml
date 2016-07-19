@@ -17,21 +17,21 @@ class DomDocSpec extends ObjectBehavior
 
     public function it_is_not_initializable_through_constructor()
     {
-        $this->shouldThrow('\Exception')->during('__construct');
+        $this->shouldThrow(\Exception::class)->during('__construct');
     }
 
     public function it_throws_an_exception_if_the_xml_file_does_not_exist()
     {
         $this->beConstructedFromFile('toto.xml');
 
-        $this->shouldThrow('\RuntimeException')->duringInstantiation();
+        $this->shouldThrow(\RuntimeException::class)->duringInstantiation();
     }
 
     public function it_throws_an_exception_if_DOMDocument_cannot_load_the_content_of_the_xml_file()
     {
         $this->beConstructedFromFile(__DIR__.'/../../../res/xml/unloadable.xml');
 
-        $this->shouldThrow('\RuntimeException')->duringInstantiation();
+        $this->shouldThrow(\RuntimeException::class)->duringInstantiation();
     }
 
     public function it_is_initializable_from_the_path_of_a_xml_file()
@@ -45,7 +45,7 @@ class DomDocSpec extends ObjectBehavior
     {
         $this->beConstructedFromString('unloadable content');
 
-        $this->shouldThrow('\RuntimeException')->duringInstantiation();
+        $this->shouldThrow(\RuntimeException::class)->duringInstantiation();
     }
 
     public function it_is_initializable_from_a_string()

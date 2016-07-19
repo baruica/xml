@@ -77,7 +77,7 @@ class DomDoc implements Reader
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
         if (0 === $nodeList->length) {
-            return;
+            throw new \RuntimeException('');
         }
 
         return $nodeList->item(0);
@@ -88,7 +88,7 @@ class DomDoc implements Reader
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
         if (0 === $nodeList->length) {
-            return;
+            throw new \RuntimeException('');
         }
 
         $lastIndex = $nodeList->length - 1;
@@ -101,6 +101,8 @@ class DomDoc implements Reader
         if (null !== $node) {
             return $node->nodeValue;
         }
+
+        throw new \InvalidArgumentException('');
     }
 
     public function getNodeAttribute(string $att, \DOMElement $node = null) : string
@@ -108,6 +110,8 @@ class DomDoc implements Reader
         if (null !== $node) {
             return $node->getAttribute($att);
         }
+
+        throw new \InvalidArgumentException('');
     }
 
     public function getNeighborNodeValue(string $neighborNodeName, \DOMElement $node = null) : string
@@ -117,6 +121,8 @@ class DomDoc implements Reader
                 $node->parentNode->getElementsByTagName($neighborNodeName)->item(0)
             );
         }
+
+        throw new \InvalidArgumentException('');
     }
 
     public function getValue(string $xpath, \DOMNode $contextNode = null) : string
