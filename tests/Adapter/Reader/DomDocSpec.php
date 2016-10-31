@@ -1,13 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace tests\Baruica\Xml\Adapter\Reader;
 
 use PhpSpec\ObjectBehavior;
 use Baruica\Xml\Reader;
 
-/**
- * @mixin \Baruica\Xml\Adapter\Reader\DomDoc
- */
 class DomDocSpec extends ObjectBehavior
 {
     public function let()
