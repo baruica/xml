@@ -1,15 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace tests\Baruica\Xml\Adapter\Reader;
+namespace Baruica\Xml\Adapter\Reader;
 
 use PhpSpec\ObjectBehavior;
 use Baruica\Xml\Reader;
 
 class DomDocSpec extends ObjectBehavior
 {
+    const ROOT = __DIR__.'/../../../../..';
+
     public function let()
     {
-        $this->beConstructedFromFile(__DIR__.'/../../../res/xml/list.xml');
+        $this->beConstructedThrough('fromFile', [self::ROOT.'/res/xml/list.xml']);
     }
 
     public function it_is_not_initializable_through_constructor()
@@ -19,35 +21,35 @@ class DomDocSpec extends ObjectBehavior
 
     public function it_throws_an_exception_if_the_xml_file_does_not_exist()
     {
-        $this->beConstructedFromFile('toto.xml');
+        $this->beConstructedThrough('fromFile', ['toto.xml']);
 
         $this->shouldThrow(\RuntimeException::class)->duringInstantiation();
     }
 
     public function it_throws_an_exception_if_DOMDocument_cannot_load_the_content_of_the_xml_file()
     {
-        $this->beConstructedFromFile(__DIR__.'/../../../res/xml/unloadable.xml');
+        $this->beConstructedThrough('fromFile', [self::ROOT.'/res/xml/unloadable.xml']);
 
         $this->shouldThrow(\RuntimeException::class)->duringInstantiation();
     }
 
     public function it_is_initializable_from_the_path_of_a_xml_file()
     {
-        $this->beConstructedFromFile(__DIR__.'/../../../res/xml/static_factory_constructor.xml');
+        $this->beConstructedThrough('fromFile', [self::ROOT.'/res/xml/static_factory_constructor.xml']);
 
         $this->shouldImplement(Reader::class);
     }
 
     public function it_throws_an_exception_if_DOMDocument_cannot_load_the_xml_string()
     {
-        $this->beConstructedFromString('unloadable content');
+        $this->beConstructedThrough('fromString', ['unloadable content']);
 
         $this->shouldThrow(\RuntimeException::class)->duringInstantiation();
     }
 
     public function it_is_initializable_from_a_string()
     {
-        $this->beConstructedFromString('<?xml version="1.0" ?><test_root><test_node_1>node 1</test_node_1></test_root></xml>');
+        $this->beConstructedThrough('fromString', ['<?xml version="1.0" ?><test_root><test_node_1>node 1</test_node_1></test_root></xml>']);
 
         $this->shouldImplement(Reader::class);
     }

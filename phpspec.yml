@@ -2,6 +2,5 @@ formatter.name: pretty
 suites:
     xml_suite:
         namespace: Baruica\Xml
-        psr4_prefix: Baruica\Xml
-        spec_path: "%paths.config%"
-        spec_prefix: tests
+        spec_prefix: ""
+        spec_path: %paths.config%/spec

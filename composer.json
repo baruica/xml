@@ -12,12 +12,14 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Baruica\\Xml\\": "src" },
-        "exclude-from-classmap": ["tests"]
+        "psr-4": {
+            "Baruica\\Xml\\": "src/Baruica/Xml/"
+        },
+        "exclude-from-classmap": ["spec"]
     },
     "autoload-dev": {
         "psr-4": {
-            "tests\\Baruica\\Xml\\": "tests"
+            "Baruica\\Xml\\": "spec/Baruica/Xml/"
         }
     },
     "require": {
