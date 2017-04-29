@@ -8,24 +8,31 @@
     "authors": [
         {
             "name": "Nelson da Costa",
-            "email": "barui.ca@gmail.com"
+            "email": "baruica@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
             "Baruica\\Xml\\": "src/Baruica/Xml/"
         },
-        "exclude-from-classmap": ["spec"]
+        "exclude-from-classmap": [
+            "**Spec.php",
+            "**Stub.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
             "Baruica\\Xml\\": "spec/Baruica/Xml/"
         }
     },
+    "config": {
+        "sort-packages": true
+    },
     "require": {
         "php": "^7.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "^3.1"
+        "phpspec/phpspec": "^3.3",
+        "friendsofphp/php-cs-fixer": "^2.3"
     }
 }

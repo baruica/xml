@@ -1,18 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Baruica\Xml\Adapter\Reader;
 
-use PhpSpec\ObjectBehavior;
 use Baruica\Xml\Reader;
+use PhpSpec\ObjectBehavior;
 
 class DomDocSpec extends ObjectBehavior
 {
-    const ROOT = __DIR__.'/../../../../..';
-
     public function let()
     {
-        $this->beConstructedThrough('fromFile', [self::ROOT.'/res/xml/list.xml']);
+        $this->beConstructedThrough('fromFile', [__DIR__.'/list.xml']);
     }
 
     public function it_is_not_initializable_through_constructor()
@@ -22,21 +21,21 @@ class DomDocSpec extends ObjectBehavior
 
     public function it_throws_an_exception_if_the_xml_file_does_not_exist()
     {
-        $this->beConstructedThrough('fromFile', ['toto.xml']);
+        $this->beConstructedThrough('fromFile', [__DIR__.'/toto.xml']);
 
         $this->shouldThrow(\RuntimeException::class)->duringInstantiation();
     }
 
     public function it_throws_an_exception_if_DOMDocument_cannot_load_the_content_of_the_xml_file()
     {
-        $this->beConstructedThrough('fromFile', [self::ROOT.'/res/xml/unloadable.xml']);
+        $this->beConstructedThrough('fromFile', [__DIR__.'/unloadable.xml']);
 
         $this->shouldThrow(\RuntimeException::class)->duringInstantiation();
     }
 
     public function it_is_initializable_from_the_path_of_a_xml_file()
     {
-        $this->beConstructedThrough('fromFile', [self::ROOT.'/res/xml/static_factory_constructor.xml']);
+        $this->beConstructedThrough('fromFile', [__DIR__.'/static_factory_constructor.xml']);
 
         $this->shouldImplement(Reader::class);
     }

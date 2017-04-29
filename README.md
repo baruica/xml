@@ -13,7 +13,6 @@ Simple library providing an easy API for reading XML.
 ```bash
 composer require baruica/xml
 ```
-See the tags to know which version to use when it asks for a version.
 
 ## Code License
 
