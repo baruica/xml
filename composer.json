@@ -16,6 +16,7 @@
             "Baruica\\Xml\\": "src/Baruica/Xml/"
         },
         "exclude-from-classmap": [
+            "**/spec/*",
             "**Spec.php"
         ]
     },
@@ -25,6 +26,9 @@
         }
     },
     "config": {
+        "platform": {
+            "php": "7.0"
+        },
         "sort-packages": true
     },
     "require": {
@@ -32,6 +36,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.3",
-        "phpspec/phpspec": "^4.0"
+        "phpspec/phpspec": "^4.0",
+        "phpstan/phpstan": "^0.8.0"
     }
 }
