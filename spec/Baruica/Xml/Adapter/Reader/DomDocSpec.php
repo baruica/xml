@@ -14,11 +14,6 @@ class DomDocSpec extends ObjectBehavior
         $this->beConstructedThrough('fromFile', [__DIR__.'/list.xml']);
     }
 
-    public function it_is_not_initializable_through_constructor()
-    {
-        $this->shouldThrow(\Exception::class)->during('__construct');
-    }
-
     public function it_throws_an_exception_if_the_xml_file_does_not_exist()
     {
         $this->beConstructedThrough('fromFile', [__DIR__.'/toto.xml']);
@@ -56,11 +51,9 @@ class DomDocSpec extends ObjectBehavior
 
     public function it_returns_a_list_of_node_values()
     {
-        $this->getList('/test_root/test_nodes/*')->shouldReturn([
-            'node 1',
-            'node 2',
-            'node 3',
-            'node 4',
-        ]);
+        $this->getList('/test_root/test_nodes/*')->shouldReturn(yield 'node 1');
+        $this->getList('/test_root/test_nodes/*')->shouldReturn(yield 'node 2');
+        $this->getList('/test_root/test_nodes/*')->shouldReturn(yield 'node 3');
+        $this->getList('/test_root/test_nodes/*')->shouldReturn(yield 'node 4');
     }
 }

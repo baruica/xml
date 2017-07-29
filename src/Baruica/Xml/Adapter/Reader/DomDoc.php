@@ -6,72 +6,67 @@ namespace Baruica\Xml\Adapter\Reader;
 
 use Baruica\Xml\Reader;
 
-class DomDoc implements Reader
+final class DomDoc implements Reader
 {
-    /** @var \DOMXPath */
     private $domXpath;
 
-    private function __construct(\DOMDocument $doc)
+    private function __construct(\DOMDocument $domDocument)
     {
-        $this->domXpath = new \DOMXPath($doc);
+        $this->domXpath = new \DOMXPath($domDocument);
     }
 
     public static function fromFile(string $filePath): self
     {
-        $doc = new \DOMDocument();
+        $domDocument = new \DOMDocument();
 
         try {
-            if (false === file_exists($filePath) || false === $doc->load($filePath)) {
+            if (false === file_exists($filePath) || false === $domDocument->load($filePath)) {
                 throw new \RuntimeException(sprintf('Could not load xml file [%s].', $filePath));
             }
         } catch (\Exception $e) {
             throw new \RuntimeException($e->getMessage());
         }
 
-        return new self($doc);
+        return new self($domDocument);
     }
 
     public static function fromString(string $xmlStr): self
     {
-        $doc = new \DOMDocument();
+        $domDocument = new \DOMDocument();
 
         try {
-            if (false === $doc->loadXML($xmlStr)) {
+            if (false === $domDocument->loadXML($xmlStr)) {
                 throw new \RuntimeException(sprintf('Could not load XML from string [%s]', $xmlStr));
             }
         } catch (\Exception $e) {
             throw new \RuntimeException($e->getMessage());
         }
 
-        return new self($doc);
+        return new self($domDocument);
     }
 
-    public function getList(string $xpath): array
+    public function getList(string $xpath): \Generator
     {
-        $list = [];
-
         if (null === $nodeList = $this->getNodeList($xpath)) {
-            return $list;
+            return [];
         }
 
         foreach ($nodeList as $node) {
-            $list[] = $this->getNodeValue($node);
+            yield $this->getNodeValue($node);
         }
-
-        return $list;
     }
 
     public function getNodeList(string $xpath, \DOMNode $contextNode = null): \DOMNodeList
     {
-        $valNL = (null === $contextNode)
+        $nodeList = (null === $contextNode)
             ? $this->domXpath->query($xpath)
             : $this->domXpath->query($xpath, $contextNode);
 
-        if (false === $valNL) {
+        if (false === $nodeList) {
             return new \DOMNodeList();
         }
 
-        return $valNL;
+        return $nodeList;
     }
 
     public function getFirstNode(string $xpath, \DOMNode $contextNode = null): \DOMElement
@@ -138,9 +133,11 @@ class DomDoc implements Reader
 
         foreach ($contextNodes as $node) {
             $keyNodeValue = $this->getValue($keyNodeName, $node);
+
             if (!array_key_exists($keyNodeValue, $values)) {
                 $values[$keyNodeValue] = [];
             }
+
             foreach ($valNodes as $valNodeName) {
                 if (null !== $fn) {
                     $params = $fnParams;
