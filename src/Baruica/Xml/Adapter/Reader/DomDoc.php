@@ -127,6 +127,11 @@ final class DomDoc implements Reader
         return $this->getNodeValue($this->getFirstNode($xpath, $contextNode));
     }
 
+    public function getLastValue(string $xpath, \DOMNode $contextNode = null): string
+    {
+        return $this->getNodeValue($this->getLastNode($xpath, $contextNode));
+    }
+
     public function getValues(\DOMNodeList $contextNodes, string $keyNodeName, array $valNodes = [], \Closure $fn = null, array $fnParams = []): array
     {
         $values = [];
@@ -152,10 +157,5 @@ final class DomDoc implements Reader
         ksort($values);
 
         return $values;
-    }
-
-    public function getLastValue(string $xpath, \DOMNode $contextNode = null): string
-    {
-        return $this->getNodeValue($this->getLastNode($xpath, $contextNode));
     }
 }
