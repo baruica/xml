@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Baruica\Xml\Adapter\Reader;
+namespace Baruica\Xml\XmlReader;
 
-use Baruica\Xml\Reader;
-
-final class DomDoc implements Reader
+final class DomDocXmlReader implements XmlReader
 {
     private $domXpath;
 

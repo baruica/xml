@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Baruica\Xml;
+namespace Baruica\Xml\XmlReader;
 
-interface Reader
+interface XmlReader
 {
     public function getList(string $xpath): \Generator;
 }

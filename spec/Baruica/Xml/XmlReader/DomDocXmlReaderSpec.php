@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Baruica\Xml\Adapter\Reader;
+namespace Baruica\Xml\XmlReader;
 
-use Baruica\Xml\Reader;
 use PhpSpec\ObjectBehavior;
 
-class DomDocSpec extends ObjectBehavior
+class DomDocXmlReaderSpec extends ObjectBehavior
 {
     public function let()
     {
@@ -32,7 +31,7 @@ class DomDocSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('fromFile', [__DIR__.'/static_factory_constructor.xml']);
 
-        $this->shouldImplement(Reader::class);
+        $this->shouldImplement(XmlReader::class);
     }
 
     public function it_throws_an_exception_if_DOMDocument_cannot_load_the_xml_string()
@@ -46,7 +45,7 @@ class DomDocSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('fromString', ['<?xml version="1.0" ?><test_root><test_node_1>node 1</test_node_1></test_root></xml>']);
 
-        $this->shouldImplement(Reader::class);
+        $this->shouldImplement(XmlReader::class);
     }
 
     public function it_returns_a_list_of_node_values()

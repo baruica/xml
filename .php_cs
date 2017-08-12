@@ -4,7 +4,7 @@
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__.'/src')
     ->in(__DIR__.'/spec')
-    ->exclude('spec/Baruica/Xml/Adapter/Reader/*.xml')
+    ->exclude('spec/Baruica/Xml/XmlReader/*.xml')
 ;
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
