@@ -8,39 +8,45 @@ final class DomDocXmlReader implements XmlReader
 {
     private $domXpath;
 
-    private function __construct(\DOMDocument $domDocument)
+    private function __construct(\DOMDocument $domDocument, array $namespaces = [])
     {
         $this->domXpath = new \DOMXPath($domDocument);
+
+        foreach ($namespaces as $prefix => $namespace) {
+            if (false === $this->domXpath->registerNamespace($prefix, $namespace)) {
+                throw new \RuntimeException("Error while trying to register namespace [$namespace] with prefix [$prefix]");
+            }
+        }
     }
 
-    public static function fromFile(string $filePath): self
+    public static function fromFile(string $filePath, array $namespaces = []): self
     {
         $domDocument = new \DOMDocument();
 
         try {
-            if (false === file_exists($filePath) || false === $domDocument->load($filePath)) {
-                throw new \RuntimeException(sprintf('Could not load xml file [%s].', $filePath));
+            if (false === \file_exists($filePath) || false === $domDocument->load($filePath)) {
+                throw new \RuntimeException("Could not load xml file [$filePath].");
             }
         } catch (\Exception $e) {
             throw new \RuntimeException($e->getMessage());
         }
 
-        return new self($domDocument);
+        return new self($domDocument, $namespaces);
     }
 
-    public static function fromString(string $xmlStr): self
+    public static function fromString(string $xmlStr, array $namespaces = []): self
     {
         $domDocument = new \DOMDocument();
 
         try {
             if (false === $domDocument->loadXML($xmlStr)) {
-                throw new \RuntimeException(sprintf('Could not load XML from string [%s]', $xmlStr));
+                throw new \RuntimeException("Could not load XML from string [$xmlStr]");
             }
         } catch (\Exception $e) {
             throw new \RuntimeException($e->getMessage());
         }
 
-        return new self($domDocument);
+        return new self($domDocument, $namespaces);
     }
 
     public function getList(string $xpath): \Generator
@@ -137,14 +143,14 @@ final class DomDocXmlReader implements XmlReader
         foreach ($contextNodes as $node) {
             $keyNodeValue = $this->getValue($keyNodeName, $node);
 
-            if (!array_key_exists($keyNodeValue, $values)) {
+            if (!\array_key_exists($keyNodeValue, $values)) {
                 $values[$keyNodeValue] = [];
             }
 
             foreach ($valNodes as $valNodeName) {
                 if (null !== $fn) {
                     $params = $fnParams;
-                    array_unshift($params, $this->getValue($valNodeName, $node));
+                    \array_unshift($params, $this->getValue($valNodeName, $node));
                     $values[$keyNodeValue] = $fn($params);
                 } else {
                     $values[$keyNodeValue] = $this->getValue($valNodeName, $node);
@@ -152,7 +158,7 @@ final class DomDocXmlReader implements XmlReader
             }
         }
 
-        ksort($values);
+        \ksort($values);
 
         return $values;
     }

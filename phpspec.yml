@@ -1,6 +1,0 @@
-formatter.name: dot
-suites:
-    xml_suite:
-        namespace: Baruica\Xml
-        spec_prefix: ""
-        spec_path: %paths.config%/spec

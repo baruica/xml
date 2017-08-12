@@ -2,34 +2,35 @@
 
 declare(strict_types=1);
 
-namespace Baruica\Xml\XmlReader;
+namespace spec\Baruica\Xml\XmlReader;
 
+use Baruica\Xml\XmlReader\XmlReader;
 use PhpSpec\ObjectBehavior;
 
 class DomDocXmlReaderSpec extends ObjectBehavior
 {
     public function let()
     {
-        $this->beConstructedThrough('fromFile', [__DIR__.'/list.xml']);
+        $this->beConstructedThrough('fromFile', [$this->getPathToXmlFile('list.xml')]);
     }
 
     public function it_throws_an_exception_if_the_xml_file_does_not_exist()
     {
-        $this->beConstructedThrough('fromFile', [__DIR__.'/toto.xml']);
+        $this->beConstructedThrough('fromFile', [$this->getPathToXmlFile('toto.xml')]);
 
         $this->shouldThrow(\RuntimeException::class)->duringInstantiation();
     }
 
     public function it_throws_an_exception_if_DOMDocument_cannot_load_the_content_of_the_xml_file()
     {
-        $this->beConstructedThrough('fromFile', [__DIR__.'/unloadable.xml']);
+        $this->beConstructedThrough('fromFile', [$this->getPathToXmlFile('unloadable.xml')]);
 
         $this->shouldThrow(\RuntimeException::class)->duringInstantiation();
     }
 
     public function it_is_initializable_from_the_path_of_a_xml_file()
     {
-        $this->beConstructedThrough('fromFile', [__DIR__.'/static_factory_constructor.xml']);
+        $this->beConstructedThrough('fromFile', [$this->getPathToXmlFile('static_factory_constructor.xml')]);
 
         $this->shouldImplement(XmlReader::class);
     }
@@ -54,5 +55,26 @@ class DomDocXmlReaderSpec extends ObjectBehavior
         $this->getList('/test_root/test_nodes/*')->shouldReturn(yield 'node 2');
         $this->getList('/test_root/test_nodes/*')->shouldReturn(yield 'node 3');
         $this->getList('/test_root/test_nodes/*')->shouldReturn(yield 'node 4');
+    }
+
+    public function it_returns_a_value()
+    {
+        $this->beConstructedThrough(
+            'fromFile',
+            [
+                $this->getPathToXmlFile('with_namespaces.xml'),
+                [
+                    'a' => 'http://www.w3.org/2005/Atom',
+                    'x' => 'http://www.w3.org/1999/xhtml',
+                ]
+            ]
+        );
+
+        $this->getValue('/a:entry/a:content/x:div/x:div/x:ul/x:li[@id="id_02"]')->shouldReturn('X02');
+    }
+
+    private function getPathToXmlFile(string $filename): string
+    {
+        return __DIR__.\DIRECTORY_SEPARATOR.$filename;
     }
 }

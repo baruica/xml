@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:entry xmlns:a="http://www.w3.org/2005/Atom" xmlns:x="http://www.w3.org/1999/xhtml">
+    <a:title type="text">my-title</a:title>
+    <a:id>my-url</a:id>
+    <a:published>2017-08-11T14:27:29Z</a:published>
+    <a:updated>2017-08-11T14:27:29Z</a:updated>
+    <a:author>
+        <a:name>some-author</a:name>
+    </a:author>
+    <a:content type="xhtml">
+        <x:div class="some_class" title="some_title" id="some_id">
+            <x:div class="some_class" title="some_title" id="some_longer_id">
+                <x:ul>
+                    <x:li id="id_01">X01</x:li>
+                    <x:li id="id_02">X02</x:li>
+                    <x:li id="id_03">X03</x:li>
+                </x:ul>
+            </x:div>
+        </x:div>
+    </a:content>
+</a:entry>
