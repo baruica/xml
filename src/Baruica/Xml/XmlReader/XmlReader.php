@@ -8,5 +8,8 @@ interface XmlReader
 {
     public function getList(string $xpath): \Generator;
 
-    public function getValue(string $xpath, \DOMNode $contextNode = null): string;
+    /**
+     * @return string | null
+     */
+    public function getValue(string $xpath, \DOMNode $contextNode = null);
 }

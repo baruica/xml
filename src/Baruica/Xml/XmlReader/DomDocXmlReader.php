@@ -73,49 +73,80 @@ final class DomDocXmlReader implements XmlReader
         return $nodeList;
     }
 
-    public function getFirstNode(string $xpath, \DOMNode $contextNode = null): \DOMElement
+    /**
+     * @return \DOMElement | null
+     */
+    public function getFirstNode(string $xpath, \DOMNode $contextNode = null)
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
-        if (0 === $nodeList->length) {
-            throw new \RuntimeException('');
+        if (0 !== $nodeList->length) {
+            return $nodeList->item(0);
         }
 
-        return $nodeList->item(0);
+        return null;
     }
 
-    public function getLastNode(string $xpath, \DOMNode $contextNode = null): \DOMElement
+    /**
+     * @return \DOMElement | null
+     */
+    public function getLastNode(string $xpath, \DOMNode $contextNode = null)
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
-        if (0 === $nodeList->length) {
-            throw new \RuntimeException('');
+        if (0 !== $nodeList->length) {
+            $lastIndex = $nodeList->length - 1;
+
+            return $nodeList->item($lastIndex);
         }
 
-        $lastIndex = $nodeList->length - 1;
-
-        return $nodeList->item($lastIndex);
+        return null;
     }
 
-    public function getNodeValue(\DOMElement $node = null): string
-    {
-        if (null !== $node) {
-            return $node->nodeValue;
-        }
-
-        throw new \InvalidArgumentException('');
-    }
-
-    public function getNodeAttribute(string $att, \DOMElement $node = null): string
+    /**
+     * @return string | null
+     */
+    public function getNodeAttribute(string $att, \DOMElement $node = null)
     {
         if (null !== $node) {
             return $node->getAttribute($att);
         }
 
-        throw new \InvalidArgumentException('');
+        return null;
     }
 
-    public function getNeighborNodeValue(string $neighborNodeName, \DOMElement $node = null): string
+    /**
+     * @return string | null
+     */
+    public function getNodeValue(\DOMElement $node = null)
+    {
+        if (null !== $node) {
+            return $node->nodeValue;
+        }
+
+        return null;
+    }
+
+    /**
+     * @return string | null
+     */
+    public function getValue(string $xpath, \DOMNode $contextNode = null)
+    {
+        return $this->getNodeValue($this->getFirstNode($xpath, $contextNode));
+    }
+
+    /**
+     * @return string | null
+     */
+    public function getLastValue(string $xpath, \DOMNode $contextNode = null)
+    {
+        return $this->getNodeValue($this->getLastNode($xpath, $contextNode));
+    }
+
+    /**
+     * @return string | null
+     */
+    public function getNeighborNodeValue(string $neighborNodeName, \DOMElement $node = null)
     {
         if (null !== $node) {
             return $this->getNodeValue(
@@ -123,17 +154,7 @@ final class DomDocXmlReader implements XmlReader
             );
         }
 
-        throw new \InvalidArgumentException('');
-    }
-
-    public function getValue(string $xpath, \DOMNode $contextNode = null): string
-    {
-        return $this->getNodeValue($this->getFirstNode($xpath, $contextNode));
-    }
-
-    public function getLastValue(string $xpath, \DOMNode $contextNode = null): string
-    {
-        return $this->getNodeValue($this->getLastNode($xpath, $contextNode));
+        return null;
     }
 
     public function getValues(\DOMNodeList $contextNodes, string $keyNodeName, array $valNodes = [], \Closure $fn = null, array $fnParams = []): array
