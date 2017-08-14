@@ -73,6 +73,11 @@ class DomDocXmlReaderSpec extends ObjectBehavior
         $this->getValue('/a:entry/a:content/x:div/x:div/x:ul/x:li[@id="id_02"]')->shouldReturn('X02');
     }
 
+    public function it_returns_an_empty_node_list_even_if_given_a_malformed_xpath_expression()
+    {
+        $this->getNodeList('invalide xpath')->shouldBeAnInstanceOf(\DOMNodeList::class);
+    }
+
     private function getPathToXmlFile(string $filename): string
     {
         return __DIR__.\DIRECTORY_SEPARATOR.$filename;
