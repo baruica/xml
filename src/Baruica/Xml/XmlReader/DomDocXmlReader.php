@@ -63,9 +63,7 @@ final class DomDocXmlReader implements XmlReader
     public function getNodeList(string $xpath, \DOMNode $contextNode = null): \DOMNodeList
     {
         try {
-            $nodeList = (null === $contextNode)
-                ? $this->domXpath->query($xpath)
-                : $this->domXpath->query($xpath, $contextNode);
+            $nodeList = $this->domXpath->query($xpath, $contextNode);
         } catch (\Throwable $e) {
             return new \DOMNodeList();
         }
