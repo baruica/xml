@@ -44,7 +44,12 @@ class DomDocXmlReaderSpec extends ObjectBehavior
 
     public function it_is_initializable_from_a_string()
     {
-        $this->beConstructedThrough('fromString', ['<?xml version="1.0" ?><test_root><test_node_1>node 1</test_node_1></test_root></xml>']);
+        $this->beConstructedThrough(
+            'fromString',
+            [
+                '<?xml version="1.0" ?><root_node><test_node_1>node 1</test_node_1></root_node>'
+            ]
+        );
 
         $this->shouldImplement(XmlReader::class);
     }

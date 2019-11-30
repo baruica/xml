@@ -6,7 +6,7 @@ namespace Baruica\Xml\XmlReader;
 
 final class DomDocXmlReader implements XmlReader
 {
-    private $domXpath;
+    private \DOMXPath $domXpath;
 
     private function __construct(\DOMDocument $domDocument, array $namespaces = [])
     {
@@ -75,10 +75,7 @@ final class DomDocXmlReader implements XmlReader
         return $nodeList;
     }
 
-    /**
-     * @return \DOMElement | null
-     */
-    public function getFirstNode(string $xpath, \DOMNode $contextNode = null)
+    public function getFirstNode(string $xpath, \DOMNode $contextNode = null): ?\DOMElement
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
@@ -89,10 +86,7 @@ final class DomDocXmlReader implements XmlReader
         return null;
     }
 
-    /**
-     * @return \DOMElement | null
-     */
-    public function getLastNode(string $xpath, \DOMNode $contextNode = null)
+    public function getLastNode(string $xpath, \DOMNode $contextNode = null): ?\DOMElement
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
@@ -105,10 +99,7 @@ final class DomDocXmlReader implements XmlReader
         return null;
     }
 
-    /**
-     * @return string | null
-     */
-    public function getNodeAttribute(string $att, \DOMElement $node = null)
+    public function getNodeAttribute(string $att, \DOMElement $node = null): ?string
     {
         if (null !== $node) {
             return $node->getAttribute($att);
@@ -117,10 +108,7 @@ final class DomDocXmlReader implements XmlReader
         return null;
     }
 
-    /**
-     * @return string | null
-     */
-    public function getNodeValue(\DOMElement $node = null)
+    public function getNodeValue(\DOMElement $node = null): ?string
     {
         if (null !== $node) {
             return $node->nodeValue;
@@ -129,26 +117,17 @@ final class DomDocXmlReader implements XmlReader
         return null;
     }
 
-    /**
-     * @return string | null
-     */
-    public function getValue(string $xpath, \DOMNode $contextNode = null)
+    public function getValue(string $xpath, \DOMNode $contextNode = null): ?string
     {
         return $this->getNodeValue($this->getFirstNode($xpath, $contextNode));
     }
 
-    /**
-     * @return string | null
-     */
-    public function getLastValue(string $xpath, \DOMNode $contextNode = null)
+    public function getLastValue(string $xpath, \DOMNode $contextNode = null): ?string
     {
         return $this->getNodeValue($this->getLastNode($xpath, $contextNode));
     }
 
-    /**
-     * @return string | null
-     */
-    public function getNeighborNodeValue(string $neighborNodeName, \DOMElement $node = null)
+    public function getNeighborNodeValue(string $neighborNodeName, \DOMElement $node = null): ?string
     {
         if (null !== $node) {
             return $this->getNodeValue(
