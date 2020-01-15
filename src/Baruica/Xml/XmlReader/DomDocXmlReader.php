@@ -75,7 +75,7 @@ final class DomDocXmlReader implements XmlReader
         return $nodeList;
     }
 
-    public function getFirstNode(string $xpath, \DOMNode $contextNode = null): ?\DOMElement
+    public function getFirstNode(string $xpath, \DOMNode $contextNode = null): ?\DOMNode
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
@@ -86,7 +86,7 @@ final class DomDocXmlReader implements XmlReader
         return null;
     }
 
-    public function getLastNode(string $xpath, \DOMNode $contextNode = null): ?\DOMElement
+    public function getLastNode(string $xpath, \DOMNode $contextNode = null): ?\DOMNode
     {
         $nodeList = $this->getNodeList($xpath, $contextNode);
 
@@ -108,7 +108,7 @@ final class DomDocXmlReader implements XmlReader
         return null;
     }
 
-    public function getNodeValue(\DOMElement $node = null): ?string
+    public function getNodeValue(\DOMNode $node = null): ?string
     {
         if (null !== $node) {
             return $node->nodeValue;
